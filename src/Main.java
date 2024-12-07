@@ -1,21 +1,17 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.OptionalDouble;
-
+import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        // Получаем класс String
+        Class<String> stringClass = String.class;
 
-        OptionalDouble average = numbers.stream()
-                .filter(n -> n % 2 == 0)
-                .mapToInt(n -> n)
-                .average();
+        // Получаем все методы класса String
+        Method[] methods = stringClass.getDeclaredMethods();
 
-        if (average.isPresent()) {
-            System.out.println("Среднее значение четных чисел: " + average.getAsDouble());
-        } else {
-            System.out.println("В списке нет четных чисел.");
+        // Выводим методы на экран
+        System.out.println("Методы класса String:");
+        for (Method method : methods) {
+            System.out.println(method.getName());
         }
     }
 }
